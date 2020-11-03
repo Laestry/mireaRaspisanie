@@ -10,18 +10,10 @@ class Subject:
         self.name = name
         self.teacher = teacher
 
-    @classmethod
-    def from_json(cls, data):
-        return cls(**data)
-
 
 class Timetable:
     def __init__(self, days):
         self.days = days
-
-    @classmethod
-    def from_json(cls, data):
-        return cls(**data)
 
 
 class Day:
@@ -45,18 +37,13 @@ class Constraint:
 
 
 class Combine:
-    def __init__(self, combined):
-        self.combined = combined
-
-    @classmethod
-    def from_json(cls, data):
-        students = list(map(Subject.from_json, data["subjects"]))
-        return cls(students)
+    def __init__(self, subjects, timetables):
+        self.subjects = subjects
+        self.timetables = timetables
 
 
 def create_json():
     ex_data = pd.read_excel('C:\\Users\\Georgy\\Desktop\\КБиСП 3 курс 1 сем .xlsx', sheet_name='Лист1', header=None)  # весь эксель файл
-
 
     for i in range(359):
         print("i", i)
@@ -143,8 +130,8 @@ def create_json():
                     add_to_timetable(count,  subjects, timetables, lessons, Constraint(type, weeks), lesson_type, room, 1)
                 count += 1
 
-            team = Combine(combined=[subjects, timetables])
-            dump_to_json(team)
+            combined = Combine(subjects, timetables)
+            dump_to_json(subjects, timetables)
 
 
 def add_to_timetable(count, subjects, timetables, lesson_name, constraint, type, room, locationindex):
@@ -168,9 +155,11 @@ def check_if_subject_exist(name, subjects):
     return False
 
 
-def dump_to_json(team):
+def dump_to_json(subjects, timetables):
     # Serializing
-    data = json.dumps(team, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    # data = json.dumps([ob.__dict__ for ob in team], indent=4, ensure_ascii=False)
+    data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
+    data = json.dumps([ob.__dict__ for ob in timetables], indent=4, ensure_ascii=False)
     print(data)
 
 
