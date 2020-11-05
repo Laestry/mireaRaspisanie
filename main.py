@@ -10,15 +10,24 @@ class Subject:
         self.name = name
         self.teacher = teacher
 
+    def repr_json(self):
+        return dict(name=self.name, teacher=self.teacher)
+
 
 class Timetable:
     def __init__(self, days):
         self.days = days
 
+    def repr_json(self):
+        return dict(days=self.days)
+
 
 class Day:
     def __init__(self, lessons):
         self.lessons = lessons
+
+    def repr_json(self):
+        return dict(lessons=self.lessons)
 
 
 class Lesson:
@@ -27,7 +36,11 @@ class Lesson:
         self.constraint = constraint
         self.type = type
         self.room = room
-        self.room = locationIndex
+        self.locationIndex = locationIndex
+
+    def repr_json(self):
+        return dict(subjectIndex=self.subjectIndex, constraint=self.constraint,  type=self.type,
+                    room=self.room, locationIndex=self.locationIndex)
 
 
 class Constraint:
@@ -35,11 +48,17 @@ class Constraint:
         self.type = type
         self.weeks = weeks
 
+    def repr_json(self):
+        return dict(type=self.type, weeks=self.weeks)
+
 
 class Combine:
     def __init__(self, subjects, timetables):
         self.subjects = subjects
         self.timetables = timetables
+
+    def repr_json(self):
+        return dict(subjects=self.subjects, timetables=self.timetables)
 
 
 def create_json():
@@ -158,8 +177,8 @@ def check_if_subject_exist(name, subjects):
 def dump_to_json(subjects, timetables):
     # Serializing
     # data = json.dumps([ob.__dict__ for ob in team], indent=4, ensure_ascii=False)
-    data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
-    data = json.dumps([ob.__dict__ for ob in timetables], indent=4, ensure_ascii=False)
+    # data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
+    data = json.dumps([ob.repr_json() for ob in timetables], indent=4, ensure_ascii=False)
     print(data)
 
 
