@@ -18,7 +18,7 @@ class Timetable:
         self.days = days
 
     def repr_json(self):
-        return dict(days=self.days)
+        return dict(days=list(map(lambda d: d.repr_json(), self.days)))
 
 
 class Day:
@@ -26,7 +26,7 @@ class Day:
         self.lessons = lessons
 
     def repr_json(self):
-        return dict(lessons=self.lessons)
+        return dict(lessons=list(map(lambda l: l.repr_json(), self.lessons)))
 
 
 class Lesson:
@@ -38,8 +38,11 @@ class Lesson:
         self.locationIndex = locationIndex
 
     def repr_json(self):
-        return dict(subjectIndex=self.subjectIndex, constraint=self.constraint,  type=self.type,
-                    room=self.room, locationIndex=self.locationIndex)
+        return dict(subjectIndex=self.subjectIndex,
+                    constraint=self.constraint.repr_json(),
+                    type=self.type,
+                    room=self.room,
+                    locationIndex=self.locationIndex)
 
 
 class Constraint:
@@ -57,17 +60,20 @@ class Combine:
         self.timetables = timetables
 
     def repr_json(self):
-        return dict(subjects=self.subjects, timetables=self.timetables)
+        return dict(
+            subjects=list(map(lambda s: s.repr_json(), self.subjects)),
+            timetables=list(map(lambda t: t.repr_json(), self.timetables))
+        )
 
 
 def create_json():
-    # url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
-    url = 'http://webservices.mirea.ru/upload/iblock/043/КБиСП 3 курс 1 сем.xlsx'
-    r = requests.get(url, allow_redirects=True)
-    open(url.rsplit('/', 1)[1], 'wb').write(r.content)
-    ex_data = pd.read_excel(url.rsplit('/', 1)[1], sheet_name='Лист1', header=None)  # весь эксель файл
-    print(url.rsplit('/', 1)[1])
-
+    # # url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
+    # url = 'http://webservices.mirea.ru/upload/iblock/043/КБиСП 3 курс 1 сем.xlsx'
+    # r = requests.get(url, allow_redirects=True)
+    # open(url.rsplit('/', 1)[1], 'wb').write(r.content)
+    # ex_data = pd.read_excel(url.rsplit('/', 1)[1], sheet_name='Лист1', header=None)  # весь эксель файл
+    # print(url.rsplit('/', 1)[1])
+    ex_data = pd.read_excel('КБиСП 3 курс 1 сем.xlsx', sheet_name='Лист1', header=None)  # весь эксель файл
     for i in range(359):
         print("i", i)
 
@@ -105,7 +111,10 @@ def create_json():
                 lessons = str(ex_data[i][j])
                 teachers = str(ex_data[i + 2][j])
                 type = 0
-                weeks = re.match('[0-9,.]', lessons)
+                weeks = []
+                match = re.match('[0-9,.]', lessons)
+                if match is not None:
+                    weeks = match.group(0)
                 lesson_type = str(ex_data[i + 1][j])
                 room = str(ex_data[i + 3][j])
                 link = str(ex_data[i + 2][j])
@@ -154,7 +163,7 @@ def create_json():
                 count += 1
 
             combined = Combine(subjects, timetables)
-            dump_to_json(subjects, timetables)
+            dump_to_json(combined, group)
 
 
 def add_to_timetable(count, subjects, timetables, lesson_name, constraint, type, room, locationindex):
@@ -178,16 +187,13 @@ def check_if_subject_exist(name, subjects):
     return False
 
 
-def dump_to_json(subjects, timetables):
+def dump_to_json(combined, group):
     # Serializing
-    # data = json.dumps([ob.__dict__ for ob in team], indent=4, ensure_ascii=False)
-    data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
-    # data = json.dumps([ob.repr_json() for ob in timetables], indent=4, ensure_ascii=False)
+    data = json.dumps(combined.repr_json(), indent=4, ensure_ascii=False)
     print(data)
+    text_file = open('json_groups/' + group + '.json', "w", encoding='utf-8')
+    n = text_file.write(data)
+    text_file.close()
 
 
 create_json()
-
-
-
-
