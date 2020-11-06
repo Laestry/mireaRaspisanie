@@ -1,6 +1,5 @@
 import json
-import math
-
+import requests
 import regex as re
 import pandas as pd
 
@@ -62,7 +61,12 @@ class Combine:
 
 
 def create_json():
-    ex_data = pd.read_excel('C:\\Users\\Georgy\\Desktop\\КБиСП 3 курс 1 сем .xlsx', sheet_name='Лист1', header=None)  # весь эксель файл
+    # url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
+    url = 'http://webservices.mirea.ru/upload/iblock/043/КБиСП 3 курс 1 сем.xlsx'
+    r = requests.get(url, allow_redirects=True)
+    open(url.rsplit('/', 1)[1], 'wb').write(r.content)
+    ex_data = pd.read_excel(url.rsplit('/', 1)[1], sheet_name='Лист1', header=None)  # весь эксель файл
+    print(url.rsplit('/', 1)[1])
 
     for i in range(359):
         print("i", i)
@@ -177,8 +181,8 @@ def check_if_subject_exist(name, subjects):
 def dump_to_json(subjects, timetables):
     # Serializing
     # data = json.dumps([ob.__dict__ for ob in team], indent=4, ensure_ascii=False)
-    # data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
-    data = json.dumps([ob.repr_json() for ob in timetables], indent=4, ensure_ascii=False)
+    data = json.dumps([ob.__dict__ for ob in subjects], indent=4, ensure_ascii=False)
+    # data = json.dumps([ob.repr_json() for ob in timetables], indent=4, ensure_ascii=False)
     print(data)
 
 
