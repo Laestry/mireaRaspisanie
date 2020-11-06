@@ -67,7 +67,7 @@ class Combine:
 
 
 def create_json():
-    # # url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
+    # url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
     # url = 'http://webservices.mirea.ru/upload/iblock/043/КБиСП 3 курс 1 сем.xlsx'
     # r = requests.get(url, allow_redirects=True)
     # open(url.rsplit('/', 1)[1], 'wb').write(r.content)
@@ -112,21 +112,30 @@ def create_json():
                 teachers = str(ex_data[i + 2][j])
                 type = 0
                 weeks = []
-                match = re.match('[0-9,.]', lessons)
-                if match is not None:
-                    weeks = match.group(0)
+                # match = re.match('[0-9,.]', lessons)
+                # if match is not None:
+                #     weeks = match.group(0)
                 lesson_type = str(ex_data[i + 1][j])
                 room = str(ex_data[i + 3][j])
                 link = str(ex_data[i + 2][j])
 
                 if re.search('(([0-9]{1,2},{0,1}\\s*)+(|н|нед))', lessons) and lessons != 'nan':
-                    lessons_name = re.sub('[0-9,.]', '', lessons)
-                    lessons_name = re.sub('(( *нед\\.* *)|( н *))', '', lessons_name)
-
+                    lessons_name = re.sub('(( *нед\\.* *)|( н *))', '', lessons)
+                    # for num, x in enumerate(subjects, start):
                     if ";" in lessons_name:
                         lessons_name = lessons_name.split(';')
+                        start_x = 0
+                        for num, lesson_x in enumerate(lessons_name, start_x):
+                            weeks.append(''.join(re.findall('[0-9,.]', lesson_x)))
+                            lessons_name[num] = re.sub('[0-9,.]', '', lesson_x)
                     elif "/n" in lessons_name:
-                        lessons_name = lessons_name.split('/n')
+                        start_x = 0
+                        for num, lesson_x in enumerate(lessons_name, start_x):
+                            weeks.append(''.join(re.findall('[0-9,.]', lesson_x)))
+                            lessons_name[num] = re.sub('[0-9,.]', '', lesson_x)
+                    else:
+                        lessons_name = re.sub('[0-9,.]', '', lessons_name)
+                        weeks = ''.join(re.findall('[0-9,.]', lesson_x))
 
                     if '/n' in teachers:
                         teachers = teachers.split('/n')
@@ -148,10 +157,10 @@ def create_json():
                                 lessons_name[x] = lessons_name[x].strip(' ')
                             if not check_if_subject_exist(lessons_name[x], subjects):
                                 subjects.append(Subject(lessons_name[x], teachers[x]))
-                            add_to_timetable(count, subjects, timetables, lessons_name[x], Constraint(type, weeks),
+                            add_to_timetable(count, subjects, timetables, lessons_name[x], Constraint(type, weeks[x]),
                                              lesson_type, room, 1)
                     else:
-                        if lessons_name[0] == ' ' or lessons_name[0] == ' ':
+                        if lessons_name[0] == ' ' or lessons_name[len(lessons_name) - 1] == ' ':
                             lessons_name = lessons_name.strip(' ')
                         if not check_if_subject_exist(lessons_name, subjects):
                             subjects.append(Subject(lessons_name, teachers))
