@@ -1,206 +1,761 @@
 {
     "subjects": [
         {
+            "name": "nan",
+            "teacher": "nan",
+            "type": "nan"
+        },
+        {
             "name": "Философия",
-            "teacher": "Арапов О.Г."
+            "teacher": "Арапов О.Г.",
+            "type": "лек\nпр"
         },
         {
             "name": "Физическая культура и спорт",
-            "teacher": "nan"
-        },
-        {
-            "name": "Физическая культура и спорт",
-            "teacher": "nan"
+            "teacher": "nan",
+            "type": "пр"
         },
         {
             "name": "Теория баз данных",
-            "teacher": "Чистякова М.А."
+            "teacher": "Чистякова М.А.",
+            "type": "пр"
         },
         {
             "name": "Сети и системы передачи данных",
-            "teacher": "Садыков И.В."
+            "teacher": "Садыков И.В.",
+            "type": "пр"
         },
         {
             "name": "Основы интеллектуальных систем и технологий",
-            "teacher": "Павельев С.А."
+            "teacher": "Павельев С.А.",
+            "type": "пр"
         },
         {
-            "name": "Криптографические методы ЗИ /",
-            "teacher": [
-                "Дедов О.П./Кунин",
-                "Н.Т."
-            ]
-        },
-        {
-            "name": "Математическая обработка сигналов",
-            "teacher": "Иванова С.М."
+            "name": "",
+            "teacher": "Дедов О.П./КунинН.Т.",
+            "type": "лек\nпр"
         },
         {
             "name": "Математическая обработка сигналов",
-            "teacher": "Иванова С.М."
-        },
-        {
-            "name": "Специальные информационные технологии в правоохранительной деятельности",
-            "teacher": "Гусев А.И."
-        },
-        {
-            "name": "Специальные информационные технологии в правоохранительной деятельности",
-            "teacher": "Гусев А.И."
-        },
-        {
-            "name": "Математическая обработка сигналов",
-            "teacher": "Иванова С.М."
+            "teacher": "Иванова С.М.",
+            "type": "пр"
         },
         {
             "name": "Теория баз данных",
-            "teacher": "Чистякова М.А."
-        },
-        {
-            "name": "Физическая культура и спорт",
-            "teacher": "nan"
-        },
-        {
-            "name": "Физическая культура и спорт",
-            "teacher": "nan"
+            "teacher": "Чистякова М.А.",
+            "type": "лаб"
         },
         {
             "name": "Специальные информационные технологии в правоохранительной деятельности",
-            "teacher": "Гусев А.И."
-        },
-        {
-            "name": "Интеллектуальный анализ данных",
-            "teacher": "Никонов В.В."
-        },
-        {
-            "name": "Интеллектуальный анализ данных",
-            "teacher": "Никонов В.В."
-        },
-        {
-            "name": "Интеллектуальный анализ данных",
-            "teacher": "Никонов В.В."
-        },
-        {
-            "name": "Интеллектуальный анализ данных",
-            "teacher": "Никонов В.В."
+            "teacher": "Гусев А.И.",
+            "type": "лаб"
         },
         {
             "name": "Математическая обработка сигналов",
-            "teacher": "Иванова С.М."
+            "teacher": "Иванова С.М.",
+            "type": "лек"
         },
         {
-            "name": "Сети и системы передачи данных",
-            "teacher": "Садыков И.В."
-        },
-        {
-            "name": "Сети и системы передачи данных",
-            "teacher": "Садыков И.В."
+            "name": "Теория баз данных",
+            "teacher": "Чистякова М.А.",
+            "type": "лек"
         },
         {
             "name": "Основы интеллектуальных систем и технологий",
-            "teacher": "Павельев С.А."
+            "teacher": "Павельев С.А.",
+            "type": "лаб"
+        },
+        {
+            "name": "Сети и системы передачи данных ",
+            "teacher": "Садыкв И.В.",
+            "type": "лаб"
+        },
+        {
+            "name": "Специальные информационные технологии в правоохранительной деятельности",
+            "teacher": "Гусев А.И.",
+            "type": "лек"
+        },
+        {
+            "name": "Интеллектуальный анализ данных",
+            "teacher": "Никонов В.В.",
+            "type": "пр"
+        },
+        {
+            "name": "Интеллектуальный анализ данных",
+            "teacher": "Никонов В.В.",
+            "type": "лек"
+        },
+        {
+            "name": "Сети и системы передачи данных",
+            "teacher": "Садыков И.В.",
+            "type": "лек"
+        },
+        {
+            "name": "Основы интеллектуальных систем и технологий",
+            "teacher": "Павельев С.А.",
+            "type": "лек"
         }
     ],
     "timetables": [
         {
             "days": [
                 {
-                    "lessons": []
-                },
-                {
                     "lessons": [
                         {
-                            "subjectIndex": 6,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
-                                "weeks": "1,5,9,133,7,11,15"
+                                "weeks": []
                             },
-                            "type": "лек\nпр",
-                            "room": [
-                                "Д",
-                                "188.2"
-                            ],
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 6,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
-                                "weeks": "1,5,9,133,7,11,15"
+                                "weeks": []
                             },
-                            "type": "лек\nпр",
-                            "room": [
-                                "Д",
-                                "188.2"
-                            ],
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
                         }
                     ]
                 },
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 3,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
-                                "weeks": "9,13"
+                                "weeks": []
                             },
-                            "type": "лаб",
-                            "room": "322",
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 3,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
-                                "weeks": "9,13"
+                                "weeks": []
                             },
-                            "type": "лаб",
-                            "room": "322",
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 6,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "Криптографические методы ЗИ 1,5,9,13 / 3,7,11,15 "
+                                ]
+                            },
+                            "room": [
+                                "Д",
+                                "188.2"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 6,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "Криптографические методы ЗИ 1,5,9,13 / 3,7,11,15 "
+                                ]
+                            },
+                            "room": [
+                                "Д",
+                                "188.2"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
                         }
                     ]
                 },
                 {
                     "lessons": [
+                        {
+                            "subjectIndex": 8,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "9,13 "
+                                ]
+                            },
+                            "room": "322",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 8,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "9,13 "
+                                ]
+                            },
+                            "room": "322",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 10,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
                         {
                             "subjectIndex": 11,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
                             "room": "Д",
-                            "locationIndex": 0
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 12,
+                            "subjectIndex": 2,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
                             "room": "Д",
-                            "locationIndex": 0
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 13,
+                            "subjectIndex": 2,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "пр",
                             "room": "Д",
-                            "locationIndex": 0
+                            "locationIndex": 1
                         },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
                         {
                             "subjectIndex": 14,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "пр",
                             "room": "Д",
-                            "locationIndex": 0
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 10,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "days": [
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 1,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": "2,6,10,14 "
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 1,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": "4,8,12,16 "
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 1,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": "2,6,10,14 "
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 1,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": "4,8,12,16 "
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 2,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 2,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 3,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "258а",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 4,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "258а",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 5,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "258а",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 7,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "260",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 7,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "20",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 9,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": [
+                                "ИВЦ-105.1"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 9,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": [
+                                "ИВЦ-105.1"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 12,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "2,6,10,14 "
+                                ]
+                            },
+                            "room": [
+                                "Г-101"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 12,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "2,6,10,14 "
+                                ]
+                            },
+                            "room": [
+                                "Г-101"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 13,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "6,10,14 "
+                                ]
+                            },
+                            "room": [
+                                "Г-101"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 13,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "6,10,14 "
+                                ]
+                            },
+                            "room": [
+                                "Г-101"
+                            ],
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
                         }
                     ]
                 },
@@ -212,9 +767,66 @@
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
-                            "room": "Д",
-                            "locationIndex": 0
+                            "room": "369",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "369",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 17,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "257",
+                            "locationIndex": 1
                         },
                         {
                             "subjectIndex": 17,
@@ -222,240 +834,8 @@
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 19,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "лек",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 20,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "лек",
-                            "room": "Д",
-                            "locationIndex": 0
-                        }
-                    ]
-                },
-                {
-                    "lessons": []
-                }
-            ]
-        },
-        {
-            "days": [
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 0,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "2,6,10,14"
-                            },
-                            "type": "лек\nпр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 0,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "4,8,12,16"
-                            },
-                            "type": "лек\nпр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 0,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "2,6,10,14"
-                            },
-                            "type": "лек\nпр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 0,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "4,8,12,16"
-                            },
-                            "type": "лек\nпр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 1,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 2,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "Д",
-                            "locationIndex": 0
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 3,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "258а",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 4,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "258а",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 5,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "258а",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 7,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "260",
-                            "locationIndex": 0
-                        },
-                        {
-                            "subjectIndex": 8,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "20",
-                            "locationIndex": 0
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 9,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "лаб",
-                            "room": [
-                                "ИВЦ-105.1"
-                            ],
+                            "room": "257",
                             "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 10,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "лаб",
-                            "room": [
-                                "ИВЦ-105.1"
-                            ],
-                            "locationIndex": 1
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 5,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "2,6,10,14"
-                            },
-                            "type": "лаб",
-                            "room": "Г-101",
-                            "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 5,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "2,6,10,14"
-                            },
-                            "type": "лаб",
-                            "room": "Г-101",
-                            "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 4,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "6,10,14"
-                            },
-                            "type": "лаб",
-                            "room": "Г-101",
-                            "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 4,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": "6,10,14"
-                            },
-                            "type": "лаб",
-                            "room": "Г-101",
-                            "locationIndex": 1
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 16,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "пр",
-                            "room": "369",
-                            "locationIndex": 0
                         },
                         {
                             "subjectIndex": 18,
@@ -463,43 +843,35 @@
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "пр",
-                            "room": "369",
-                            "locationIndex": 0
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 21,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "type": "лек",
                             "room": "257",
-                            "locationIndex": 0
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 22,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
-                            "room": "257",
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 23,
+                            "subjectIndex": 0,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
                             },
-                            "type": "лек",
-                            "room": "257",
-                            "locationIndex": 0
+                            "room": "nan",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 0,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "nan",
+                            "locationIndex": 1
                         }
                     ]
                 }

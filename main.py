@@ -7,7 +7,7 @@ import pandas as pd
 class Subject:
     def __init__(self, name, teacher, type):
         self.name = name
-        self.teacher = teacher
+        self.teacher = ''.join(teacher)
         self.type = type
 
     def repr_json(self):
@@ -128,6 +128,7 @@ def format_room_and_get_location(room, location_index):
         room = str(re.sub('(В-78\\*\n)|(В-78\\*)|(в-78\\*)', '', room))
         location_index = 1
 
+    whitespace_remover(room)
     return room, location_index
 
 
@@ -145,20 +146,27 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
 
 
 def split_lessons_and_weeks(lessons, weeks):
-    if ';' in lessons:
-        lessons = lessons.split(';')
-    elif '\n' in lessons:
-        lessons = lessons.split('\n')
+    lessons = re.sub('(( *нед\\.* *)|( н *))', ' ', lessons)
+    # TODO: make somehow groups work
+    groups = re.findall('(1 +гр)|(2 +гр)', lessons)
+    lessons = re.sub('(1 +гр)|(2 +гр)', ' ', lessons)
+    weeks = re.findall('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+', lessons)
+    start = 0
 
-    if isinstance(lessons, list):
+    if len(weeks) > 1:
+        lessons = lessons.strip(' ')
+        lessons = re.split('([0-9]{1,2},|. *)*([0-9]{1,2} *)+', lessons)
+
+    if isinstance(lessons, list) and len(lessons) > 1:
+        if None in lessons:
+            lessons = list(filter(None, lessons))
         start = 0
-        for num, lesson_x in enumerate(lessons, start):
-            weeks.append(''.join(re.findall('[0-9,.]', lesson_x)))
-            lessons[num] = re.sub('[0-9,.]', '', lesson_x)
+        for num, x in enumerate(lessons, start):
+            lessons[num] = re.sub('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
     else:
-        weeks = ''.join(re.findall('[0-9,.]', lessons))
-        lessons = re.sub('[0-9,.]', '', lessons)
+        lessons = re.sub('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
 
+    whitespace_remover(lessons)
     return lessons, weeks
 
 
@@ -176,7 +184,7 @@ def split_teachers(teachers):
 
         teachers[0: 2] = [' '.join(teachers[0: 2])]
         teachers[1: 3] = [' '.join(teachers[1: 3])]
-
+    teachers = whitespace_remover(teachers)
     return teachers
 
 
@@ -237,26 +245,36 @@ def parse_timetable():
                 location_index = 0
                 # </editor-fold>
 
-                lessons_temp = re.sub('((России)|([А-Я]{2}))', '', lessons)
-                if sum(1 for c in lessons_temp if c.isupper()) > 1 or ';' in lessons or '\n' in lessons:
-                    lessons = re.sub('(( *нед\\.* *)|( н *))', '', lessons)
+                if len(list(re.findall('([0-9]{1,2}, *)*([0-9]{1,2} *)+', lessons))) > 0:
 
                     lessons, weeks = split_lessons_and_weeks(lessons, weeks)
                     room, location_index = format_room_and_get_location(room, location_index)
                     teachers = split_teachers(teachers)
 
-                    for x in range(len(lessons)):
-                        # lessons[x] = lessons[x].strip(' ')
-                        # teachers[x] = teachers[x].strip(' ')
-                        if not check_if_subject_exist(lessons[x], lesson_type, subjects):
-                            subjects.append(Subject(lessons[x], teachers[x], type))
+                    if not isinstance(lessons, list):
+                        if not check_if_subject_exist(lessons, lesson_type, subjects):
+                            subjects.append(Subject(lessons, teachers, lesson_type))
+                        add_to_timetable(count, subjects, timetables, lessons,
+                                         Constraint(type, weeks), room, location_index)
+                    else:
+                        for x in range(len(lessons)):
+                            # lessons[x] = lessons[x].strip(' ')
+                            # teachers[x] = teachers[x].strip(' ')
+                            if not check_if_subject_exist(lessons[x], lesson_type, subjects):
+                                if len(lessons) == len(teachers):
+                                    subjects.append(Subject(lessons[x], teachers[x], lesson_type))
+                                else:
+                                    subjects.append(Subject(lessons[x], teachers, lesson_type))
 
-                        if isinstance(room, list):
-                            add_to_timetable(count, subjects, timetables, lessons[x],
-                                             Constraint(type, weeks[x]), room[x], location_index)
-                        else:
-                            add_to_timetable(count, subjects, timetables, lessons[x],
-                                             Constraint(type, weeks[x]), room, location_index)
+                            if isinstance(room, list) and len(room) > 1:
+                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                                 Constraint(type, weeks[x]), room[x], location_index)
+                            elif len(room) == 1:
+                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                                 Constraint(type, weeks[x]), room[0], location_index)
+                            else:
+                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                                 Constraint(type, weeks[x]), room, location_index)
 
                 else:
                     if not check_if_subject_exist(lessons, lesson_type, subjects):
