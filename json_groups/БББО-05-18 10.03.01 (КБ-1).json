@@ -21,8 +21,13 @@
             "type": "пр"
         },
         {
+            "name": "Математические основы криптологии ",
+            "teacher": "Кунин Н.Т.",
+            "type": "лб"
+        },
+        {
             "name": "Безопасность операционных систем",
-            "teacher": "Кунин Н.Т.Дедов О.П.",
+            "teacher": "Дедов О.П.",
             "type": "лб"
         },
         {
@@ -34,6 +39,11 @@
             "name": "Стандарты информационной безопасности",
             "teacher": "Титов М.Ю.",
             "type": "лек"
+        },
+        {
+            "name": "Технические средства защиты объектов ",
+            "teacher": "Ершов Н.Т.Величко А.П.МирсаитовС.Ф.",
+            "type": "лб"
         },
         {
             "name": "Радиоизмерения",
@@ -76,14 +86,14 @@
             "type": "лек"
         },
         {
-            "name": "",
+            "name": "Радиоизмерения ",
             "teacher": "Мирсаитов С.Ф.",
             "type": "пр"
         },
         {
-            "name": "",
+            "name": " Моделирование процессов и систем защиты информации ",
             "teacher": "Мирсаитов С.Ф.Лебедев В.В.ШмелеваА.Г.",
-            "type": "пр    лб"
+            "type": "лб"
         },
         {
             "name": "Стандарты информационной безопасности",
@@ -111,12 +121,32 @@
             "type": "лек"
         },
         {
-            "name": "Теория информации",
-            "teacher": "Чистякова М.А.Иванова С.М.",
+            "name": "Моделирование процессов и систем защиты информации ",
+            "teacher": "Лебедев В.В.",
+            "type": "пр"
+        },
+        {
+            "name": "Основы формирования каналов воздействия на ИС ",
+            "teacher": "Ершов Н.С.",
+            "type": "пр"
+        },
+        {
+            "name": "Технические средства защиты объектов ",
+            "teacher": "Худяков А.А.",
+            "type": "пр"
+        },
+        {
+            "name": "Теория баз данных ",
+            "teacher": "Чистякова М.А.",
             "type": "лаб"
         },
         {
-            "name": "",
+            "name": "Теория информации",
+            "teacher": "Иванова С.М.",
+            "type": "лаб"
+        },
+        {
+            "name": "Радиоизмерения ",
             "teacher": "Мирсаитов С.Ф.",
             "type": "лек"
         }
@@ -167,7 +197,22 @@
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "5,13,15 Математические основы криптологии; 7,9,11 "
+                                    "5",
+                                    "13",
+                                    "15"
+                                ]
+                            },
+                            "room": "281",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 5,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "7",
+                                    "9",
+                                    "11"
                                 ]
                             },
                             "room": "281",
@@ -178,7 +223,22 @@
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "5,13,15 Математические основы криптологии; 7,9,11 "
+                                    "5",
+                                    "13",
+                                    "15"
+                                ]
+                            },
+                            "room": "281",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 5,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "7",
+                                    "9",
+                                    "11"
                                 ]
                             },
                             "room": "281",
@@ -189,16 +249,7 @@
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 5,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "room": "Д",
-                            "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 5,
+                            "subjectIndex": 6,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -216,7 +267,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 8,
+                            "subjectIndex": 7,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -225,7 +276,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 9,
+                            "subjectIndex": 10,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -241,28 +292,6 @@
                             },
                             "room": "Д",
                             "locationIndex": 1
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
-                        {
-                            "subjectIndex": 5,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "room": "Д",
-                            "locationIndex": 1
-                        },
-                        {
-                            "subjectIndex": 12,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": []
-                            },
-                            "room": "Д",
-                            "locationIndex": 1
                         },
                         {
                             "subjectIndex": 13,
@@ -272,14 +301,16 @@
                             },
                             "room": "Д",
                             "locationIndex": 1
-                        },
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
                         {
-                            "subjectIndex": 14,
+                            "subjectIndex": 6,
                             "constraint": {
                                 "type": 0,
-                                "weeks": [
-                                    "3,5,7,9 "
-                                ]
+                                "weeks": []
                             },
                             "room": "Д",
                             "locationIndex": 1
@@ -288,8 +319,43 @@
                             "subjectIndex": 14,
                             "constraint": {
                                 "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 15,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": 0,
                                 "weeks": [
-                                    "3,5,7,9 "
+                                    "3",
+                                    "5",
+                                    "7",
+                                    "9"
+                                ]
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "3",
+                                    "5",
+                                    "7",
+                                    "9"
                                 ]
                             },
                             "room": "Д",
@@ -309,7 +375,7 @@
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 17,
+                            "subjectIndex": 19,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -318,7 +384,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 19,
+                            "subjectIndex": 21,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -327,7 +393,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 20,
+                            "subjectIndex": 22,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -367,44 +433,56 @@
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 24,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Моделирование процессов и систем защиты информации 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "6",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 24,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Моделирование процессов и систем защиты информации 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "6",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 26,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Технические средства защиты объектов 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "281",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 26,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Технические средства защиты объектов 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "281",
@@ -451,22 +529,28 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 23,
+                            "subjectIndex": 29,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Радиоизмерения 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "Д",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 23,
+                            "subjectIndex": 29,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Радиоизмерения 1,5,9,13 "
+                                    "1",
+                                    "5",
+                                    "9",
+                                    "13"
                                 ]
                             },
                             "room": "Д",
@@ -575,56 +659,92 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 7,
+                            "subjectIndex": 8,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "2,8,10,14 Технические средства защиты объектов; 12,16 "
+                                    "2",
+                                    "8",
+                                    "10",
+                                    "14"
                                 ]
                             },
-                            "room": [
-                                "3",
-                                "358"
-                            ],
+                            "room": "3",
                             "locationIndex": [
                                 1,
                                 1
                             ]
                         },
                         {
-                            "subjectIndex": 7,
+                            "subjectIndex": 9,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "2,8,10,14 Технические средства защиты объектов; 12,16 "
+                                    "12",
+                                    "16"
                                 ]
                             },
-                            "room": [
-                                "3",
-                                "358"
-                            ],
+                            "room": "358",
                             "locationIndex": [
                                 1,
                                 1
                             ]
                         },
                         {
-                            "subjectIndex": 10,
+                            "subjectIndex": 8,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "4,8,12,16 "
+                                    "2",
+                                    "8",
+                                    "10",
+                                    "14"
+                                ]
+                            },
+                            "room": "3",
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 9,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "12",
+                                    "16"
+                                ]
+                            },
+                            "room": "358",
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 12,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
                             "room": "251а",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 11,
+                            "subjectIndex": 13,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "4,8,12,16 "
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
                             "room": "251а",
@@ -662,65 +782,93 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 15,
+                            "subjectIndex": 17,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Радиоизмерения 4,8,12,16 "
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
                             "room": "283",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 17,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Радиоизмерения 4,8,12,16 ; Моделирование процессов и систем защиты информации 2,6,10,14 "
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
-                            "room": [
-                                "283",
-                                "6"
-                            ],
+                            "room": "283",
                             "locationIndex": [
                                 1,
                                 1
                             ]
                         },
-                        {
-                            "subjectIndex": 16,
-                            "constraint": {
-                                "type": 0,
-                                "weeks": [
-                                    "Радиоизмерения 4,8,12,16 ; Моделирование процессов и систем защиты информации 2,6,10,14 "
-                                ]
-                            },
-                            "room": [
-                                "283",
-                                "6"
-                            ],
-                            "locationIndex": [
-                                1,
-                                1
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "lessons": [
                         {
                             "subjectIndex": 18,
                             "constraint": {
                                 "type": 0,
-                                "weeks": []
+                                "weeks": [
+                                    "2",
+                                    "6",
+                                    "10",
+                                    "14"
+                                ]
                             },
-                            "room": "Д",
-                            "locationIndex": 1
+                            "room": "6",
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
                         },
                         {
-                            "subjectIndex": 11,
+                            "subjectIndex": 17,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
+                                ]
+                            },
+                            "room": "283",
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "subjectIndex": 18,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "2",
+                                    "6",
+                                    "10",
+                                    "14"
+                                ]
+                            },
+                            "room": "6",
+                            "locationIndex": [
+                                1,
+                                1
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lessons": [
+                        {
+                            "subjectIndex": 20,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -729,7 +877,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 21,
+                            "subjectIndex": 13,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -738,7 +886,7 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 5,
+                            "subjectIndex": 23,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -747,7 +895,16 @@
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 5,
+                            "subjectIndex": 6,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 6,
                             "constraint": {
                                 "type": 0,
                                 "weeks": []
@@ -769,44 +926,76 @@
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 25,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Основы формирования каналов воздействия а ИС 4,8,12,16 "
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
                             "room": "283",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 16,
+                            "subjectIndex": 25,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "Основы формирования каналов воздействия а ИС 4,8,12,16 "
+                                    "4",
+                                    "8",
+                                    "12",
+                                    "16"
                                 ]
                             },
                             "room": "283",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 22,
+                            "subjectIndex": 27,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "4,12 Теория баз данных 2,10 "
+                                    "4",
+                                    "12"
                                 ]
                             },
                             "room": "429",
                             "locationIndex": 1
                         },
                         {
-                            "subjectIndex": 22,
+                            "subjectIndex": 28,
                             "constraint": {
                                 "type": 0,
                                 "weeks": [
-                                    "4,12 Теория баз данных 2,10 "
+                                    "2",
+                                    "10"
+                                ]
+                            },
+                            "room": "429",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 27,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "4",
+                                    "12"
+                                ]
+                            },
+                            "room": "429",
+                            "locationIndex": 1
+                        },
+                        {
+                            "subjectIndex": 28,
+                            "constraint": {
+                                "type": 0,
+                                "weeks": [
+                                    "2",
+                                    "10"
                                 ]
                             },
                             "room": "429",

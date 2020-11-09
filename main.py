@@ -3,6 +3,8 @@ import requests
 import regex as re
 import pandas as pd
 
+# <editor-fold desc="Data classes">
+
 
 class Subject:
     def __init__(self, name, teacher, type):
@@ -70,6 +72,7 @@ class Combine:
             timetables=list(map(lambda t: t.repr_json(),
                                 self.timetables))
         )
+# </editor-fold>
 
 
 def download_timetable(i):
@@ -95,7 +98,11 @@ def whitespace_remover(string):
         string = string.split('\n')
 
     if ' ' in string:
-        string = string.split(' ')
+        if not isinstance(string, list):
+            string = string.split(' ')
+        else:
+            for num in range(len(string)):
+                string[num] = string[num].strip(" ")
 
     ws_counter = 0
     for x in string:
@@ -146,26 +153,52 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
 
 
 def split_lessons_and_weeks(lessons, weeks):
-    lessons = re.sub('(( *нед\\.* *)|( н *))', ' ', lessons)
+    lessons = re.sub('(( *нед\\.* *)|( н *(?![А-я]))())', ' ', lessons)
     # TODO: make somehow groups work
     groups = re.findall('(1 +гр)|(2 +гр)', lessons)
     lessons = re.sub('(1 +гр)|(2 +гр)', ' ', lessons)
-    weeks = re.findall('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+', lessons)
+    weeks = re.findall('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
     start = 0
 
-    if len(weeks) > 1:
+    start = 0
+    if isinstance(weeks, list) and len(weeks) > 1:
         lessons = lessons.strip(' ')
-        lessons = re.split('([0-9]{1,2},|. *)*([0-9]{1,2} *)+', lessons)
+        lessons = re.split('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
+        for num, weeks_x in enumerate(weeks, start):
+            weeks_x = re.split('(,|\\.)', weeks_x)
+            start = 0
+            for num_x, weeks_xx in enumerate(weeks_x, start):
+                weeks_x[num_x] = re.sub('[,;\n ]', '', weeks_xx)
+                weeks[num] = weeks_x
+            ws_counter = 0
+            for x in weeks_x:
+                if x == '':
+                    ws_counter += 1
+            for _ in range(ws_counter):
+                weeks_x.remove('')
+    else:
+        weeks = re.split('(,|\\.)', weeks[0])
+        for num, weeks_x in enumerate(weeks, start):
+            weeks_x = re.sub('[,;\n ]', '', weeks_x)
+            weeks_x = weeks_x.strip(' ')
+            weeks[num] = weeks_x
+        ws_counter = 0
+        for x in weeks_x:
+            if x == '':
+                ws_counter += 1
+        for _ in range(ws_counter):
+            weeks_x.remove('')
 
     if isinstance(lessons, list) and len(lessons) > 1:
         if None in lessons:
             lessons = list(filter(None, lessons))
         start = 0
         for num, x in enumerate(lessons, start):
-            lessons[num] = re.sub('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
+            lessons[num] = re.sub('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
     else:
-        lessons = re.sub('(?:[0-9]{1,2},|. *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
+        lessons = re.sub('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
 
+    whitespace_remover(weeks)
     whitespace_remover(lessons)
     return lessons, weeks
 
@@ -201,7 +234,7 @@ def parse_timetable():
     # ex_data = download_timetable(1)
     ex_data = pd.read_excel('КБиСП 3 курс 1 сем.xlsx', sheet_name='Лист1', header=None)
 
-    for i in range(359):
+    for i in range(359):  # 359
         print("i", i)
         group = str(ex_data[i][1])
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
@@ -245,11 +278,11 @@ def parse_timetable():
                 location_index = 0
                 # </editor-fold>
 
-                if len(list(re.findall('([0-9]{1,2}, *)*([0-9]{1,2} *)+', lessons))) > 0:
-
+                if len(list(re.findall('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons))) > 0:
                     lessons, weeks = split_lessons_and_weeks(lessons, weeks)
                     room, location_index = format_room_and_get_location(room, location_index)
                     teachers = split_teachers(teachers)
+                    lesson_type = whitespace_remover(lesson_type)
 
                     if not isinstance(lessons, list):
                         if not check_if_subject_exist(lessons, lesson_type, subjects):
@@ -258,13 +291,15 @@ def parse_timetable():
                                          Constraint(type, weeks), room, location_index)
                     else:
                         for x in range(len(lessons)):
-                            # lessons[x] = lessons[x].strip(' ')
-                            # teachers[x] = teachers[x].strip(' ')
-                            if not check_if_subject_exist(lessons[x], lesson_type, subjects):
+                            lesson_type_temp = lesson_type
+                            if isinstance(lesson_type, list) and len(lesson_type) == len(lessons):
+                                lesson_type_temp = lesson_type[x]
+
+                            if not check_if_subject_exist(lessons[x], lesson_type_temp, subjects):
                                 if len(lessons) == len(teachers):
-                                    subjects.append(Subject(lessons[x], teachers[x], lesson_type))
+                                    subjects.append(Subject(lessons[x], teachers[x], lesson_type_temp))
                                 else:
-                                    subjects.append(Subject(lessons[x], teachers, lesson_type))
+                                    subjects.append(Subject(lessons[x], teachers, lesson_type_temp))
 
                             if isinstance(room, list) and len(room) > 1:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
