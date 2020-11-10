@@ -121,17 +121,24 @@ def format_room_and_get_location(room, location_index):
         room = room.split(' ')
     room = whitespace_remover(room)
 
+    # TODO : add more locations and for three lessons in one day
     if isinstance(room, list):
         location_index = []
         start = 0
         for num, room_x in enumerate(room, start):
-            if 'В-78*' or 'в-78*' in room_x:
+            if 'Д' in room_x or 'д' in room_x:
+                location_index.append(-1)
+            elif 'В-78*' in room_x or 'в-78*' in room_x:
                 room[num] = str(re.sub('(В-78\\*\n)|(В-78\\*)|(в-78\\*)', '', room_x))
                 location_index.append(1)
+                whitespace_remover(room)
             else:
                 location_index.append(0)
+                whitespace_remover(room)
 
-    elif 'В-78*' or 'в-78*' in room:
+    elif 'Д' in room or 'д' in room:
+        location_index = -1
+    elif 'В-78*' in room or 'в-78*' in room:
         room = str(re.sub('(В-78\\*\n)|(В-78\\*)|(в-78\\*)', '', room))
         location_index = 1
 
@@ -153,17 +160,14 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
 
 
 def split_lessons_and_weeks(lessons, weeks):
+    # TODO кр not done
     lessons = re.sub('(( *нед\\.* *)|( н *(?![А-я]))())', ' ', lessons)
-    # TODO: make somehow groups work
-    groups = re.findall('(1 +гр)|(2 +гр)', lessons)
-    lessons = re.sub('(1 +гр)|(2 +гр)', ' ', lessons)
-    weeks = re.findall('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
-    start = 0
+    weeks = re.findall('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
 
     start = 0
     if isinstance(weeks, list) and len(weeks) > 1:
         lessons = lessons.strip(' ')
-        lessons = re.split('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
+        lessons = re.split('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
         for num, weeks_x in enumerate(weeks, start):
             weeks_x = re.split('(,|\\.)', weeks_x)
             start = 0
@@ -194,9 +198,10 @@ def split_lessons_and_weeks(lessons, weeks):
             lessons = list(filter(None, lessons))
         start = 0
         for num, x in enumerate(lessons, start):
-            lessons[num] = re.sub('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
+            lessons[num] = re.sub('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
     else:
-        lessons = re.sub('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
+        lessons = re.sub('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
+        lessons = lessons.strip(' ')
 
     whitespace_remover(weeks)
     whitespace_remover(lessons)
@@ -301,7 +306,11 @@ def parse_timetable():
                                 else:
                                     subjects.append(Subject(lessons[x], teachers, lesson_type_temp))
 
-                            if isinstance(room, list) and len(room) > 1:
+                            if isinstance(room, list) and len(room) > 1 and isinstance(location_index, list) \
+                                    and len(location_index) > 1:
+                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                                 Constraint(type, weeks[x]), room[x], location_index[x])
+                            elif isinstance(room, list) and len(room) > 1:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
                                                  Constraint(type, weeks[x]), room[x], location_index)
                             elif len(room) == 1:
