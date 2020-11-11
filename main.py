@@ -159,8 +159,7 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
         timetables[1].days[((count - 1) // 2) // 6].lessons.append(Lesson(i, constraint, room, location_index))
 
 
-def split_lessons_and_weeks(lessons, weeks):
-    # TODO кр not done
+def split_lessons_and_weeks(lessons, weeks, type):
     lessons = re.sub('(( *нед\\.* *)|( н *(?![А-я]))())', ' ', lessons)
     weeks = re.findall('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
 
@@ -180,6 +179,11 @@ def split_lessons_and_weeks(lessons, weeks):
                     ws_counter += 1
             for _ in range(ws_counter):
                 weeks_x.remove('')
+            if 'кр' in lessons[num]:
+                type.append('кр')
+                lessons[num] = re.sub('(кр *)', '', lessons)
+            else:
+                type.append('н')
     else:
         weeks = re.split('(,|\\.)', weeks[0])
         for num, weeks_x in enumerate(weeks, start):
@@ -192,6 +196,11 @@ def split_lessons_and_weeks(lessons, weeks):
                 ws_counter += 1
         for _ in range(ws_counter):
             weeks_x.remove('')
+        if 'кр' in lessons:
+            type = 'кр'
+            lessons = re.sub('(кр *)', '', lessons)
+        else:
+            type = 'н'
 
     if isinstance(lessons, list) and len(lessons) > 1:
         if None in lessons:
@@ -205,7 +214,7 @@ def split_lessons_and_weeks(lessons, weeks):
 
     whitespace_remover(weeks)
     whitespace_remover(lessons)
-    return lessons, weeks
+    return lessons, weeks, type
 
 
 def split_teachers(teachers):
@@ -239,7 +248,7 @@ def parse_timetable():
     # ex_data = download_timetable(1)
     ex_data = pd.read_excel('КБиСП 3 курс 1 сем.xlsx', sheet_name='Лист1', header=None)
 
-    for i in range(359):  # 359
+    for i in range(245, 359):  # 359
         print("i", i)
         group = str(ex_data[i][1])
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
@@ -270,12 +279,12 @@ def parse_timetable():
             timetables.append(Timetable(even_week))
             timetables.append(Timetable(uneven_week))
             # </editor-fold>
-            for j in range(3, 75):
+            for j in range(16, 75):
                 # <editor-fold desc="Parsing information in excel">
                 lessons = str(ex_data[i][j])
                 print(lessons, j)
                 teachers = str(ex_data[i + 2][j])
-                type = 0
+                type = []
                 weeks = []
                 lesson_type = str(ex_data[i + 1][j])
                 room = str(ex_data[i + 3][j])
@@ -284,7 +293,7 @@ def parse_timetable():
                 # </editor-fold>
 
                 if len(list(re.findall('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons))) > 0:
-                    lessons, weeks = split_lessons_and_weeks(lessons, weeks)
+                    lessons, weeks, type = split_lessons_and_weeks(lessons, weeks, type)
                     room, location_index = format_room_and_get_location(room, location_index)
                     teachers = split_teachers(teachers)
                     lesson_type = whitespace_remover(lesson_type)
@@ -309,16 +318,16 @@ def parse_timetable():
                             if isinstance(room, list) and len(room) > 1 and isinstance(location_index, list) \
                                     and len(location_index) > 1:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
-                                                 Constraint(type, weeks[x]), room[x], location_index[x])
+                                                 Constraint(type[x], weeks[x]), room[x], location_index[x])
                             elif isinstance(room, list) and len(room) > 1:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
-                                                 Constraint(type, weeks[x]), room[x], location_index)
+                                                 Constraint(type[x], weeks[x]), room[x], location_index)
                             elif len(room) == 1:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
-                                                 Constraint(type, weeks[x]), room[0], location_index)
+                                                 Constraint(type[x], weeks[x]), room[0], location_index)
                             else:
                                 add_to_timetable(count, subjects, timetables, lessons[x],
-                                                 Constraint(type, weeks[x]), room, location_index)
+                                                 Constraint(type[x], weeks[x]), room, location_index)
 
                 else:
                     if not check_if_subject_exist(lessons, lesson_type, subjects):
