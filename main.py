@@ -132,6 +132,10 @@ def format_room_and_get_location(room, location_index):
                 room[num] = str(re.sub('(В-78\\*\n)|(В-78\\*)|(в-78\\*)', '', room_x))
                 location_index.append(1)
                 whitespace_remover(room)
+            elif 'МП*-1' in room or 'мп*-1' in room:
+                room[num] = str(re.sub('(МП\\*-1\n)|(МП\\*-1)|(мп\\*-1)', '', room_x))
+                location_index.append(2)
+                whitespace_remover(room)
             else:
                 location_index.append(0)
                 whitespace_remover(room)
@@ -141,6 +145,9 @@ def format_room_and_get_location(room, location_index):
     elif 'В-78*' in room or 'в-78*' in room:
         room = str(re.sub('(В-78\\*\n)|(В-78\\*)|(в-78\\*)', '', room))
         location_index = 1
+    elif 'МП*-1' in room or 'мп*-1' in room:
+        room = str(re.sub('(МП\\*-1\n)|(МП\\*-1)|(мп\\*-1)', '', room))
+        location_index = 2
 
     whitespace_remover(room)
     return room, location_index
@@ -248,7 +255,7 @@ def parse_timetable():
     # ex_data = download_timetable(1)
     ex_data = pd.read_excel('КБиСП 3 курс 1 сем.xlsx', sheet_name='Лист1', header=None)
 
-    for i in range(245, 359):  # 359
+    for i in range(359):  # 359
         print("i", i)
         group = str(ex_data[i][1])
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
@@ -279,7 +286,7 @@ def parse_timetable():
             timetables.append(Timetable(even_week))
             timetables.append(Timetable(uneven_week))
             # </editor-fold>
-            for j in range(16, 75):
+            for j in range(3, 75):
                 # <editor-fold desc="Parsing information in excel">
                 lessons = str(ex_data[i][j])
                 print(lessons, j)
