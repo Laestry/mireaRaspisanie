@@ -4,6 +4,7 @@ import regex as re
 import pandas as pd
 
 # <editor-fold desc="Data classes">
+from bs4 import BeautifulSoup
 
 
 class Subject:
@@ -75,15 +76,11 @@ class Combine:
 # </editor-fold>
 
 
-def download_timetable(i):
-    if i == 0:
-        url = 'http://webservices.mirea.ru/upload/iblock/c30/КБиСП 4 курс 1 сем.xlsx'
-    elif i == 1:
-        url = 'http://webservices.mirea.ru/upload/iblock/043/КБиСП 3 курс 1 сем.xlsx'
-
-    r = requests.get(url, allow_redirects=True)
-    open(url.rsplit('/', 1)[1], 'wb').write(r.content)
-    return pd.read_excel(url.rsplit('/', 1)[1], sheet_name='Лист1', header=None)
+def download_timetable():
+    req = requests.get('https://www.mirea.ru/schedule/')
+    soup = BeautifulSoup(req.text, 'lxml')
+    links = soup.find_all('a', class_='uk-link-toggle')
+    print(links)
 
 
 def check_if_subject_exist(name, subject_type, subjects):
@@ -95,7 +92,8 @@ def check_if_subject_exist(name, subject_type, subjects):
 
 def whitespace_remover(string):
     if '\n' in string:
-        string = string.split('\n')
+        if not isinstance(string, list):
+            string = string.split('\n')
 
     if ' ' in string:
         if not isinstance(string, list):
@@ -174,6 +172,15 @@ def split_lessons_and_weeks(lessons, weeks, type):
     if isinstance(weeks, list) and len(weeks) > 1:
         lessons = lessons.strip(' ')
         lessons = re.split('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
+        whitespace_remover(lessons)
+        if isinstance(lessons, list) and len(lessons) < 2:
+            lessons = ''.join(lessons)
+            if ';' in lessons:
+                lessons = lessons.split(';')
+            elif '\n' in lessons:
+                lessons = lessons.split('\n')
+        whitespace_remover(lessons)
+
         for num, weeks_x in enumerate(weeks, start):
             weeks_x = re.split('(,|\\.)', weeks_x)
             start = 0
@@ -186,9 +193,9 @@ def split_lessons_and_weeks(lessons, weeks, type):
                     ws_counter += 1
             for _ in range(ws_counter):
                 weeks_x.remove('')
-            if 'кр' in lessons[num]:
+            if 'кр ' in lessons[num]:
                 type.append('кр')
-                lessons[num] = re.sub('(кр *)', '', lessons)
+                lessons[num] = re.sub('(кр *)', '', lessons[num])
             else:
                 type.append('н')
     else:
