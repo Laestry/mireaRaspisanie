@@ -79,8 +79,16 @@ class Combine:
 def download_timetable():
     req = requests.get('https://www.mirea.ru/schedule/')
     soup = BeautifulSoup(req.text, 'lxml')
-    links = soup.find_all('a', class_='uk-link-toggle')
-    print(links)
+    url = []
+    for a in soup.find_all('a', class_='uk-link-toggle', href=True):
+        if 'pdf' not in a['href'] and 'xlsx' in a['href'] or 'XLSX' in a['href']:
+            url.append(a['href'])
+            print(a['href'])
+
+    for url_x in url:
+        r = requests.get(url_x, allow_redirects=True)
+        open(url_x.rsplit('/', 1)[1], 'wb').write(r.content)
+        parse_timetable(url_x.rsplit('/', 1)[1])
 
 
 def check_if_subject_exist(name, subject_type, subjects):
@@ -165,13 +173,15 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
 
 
 def split_lessons_and_weeks(lessons, weeks, type):
-    lessons = re.sub('(( *нед\\.* *)|( н *(?![А-я]))())', ' ', lessons)
-    weeks = re.findall('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
+    lessons = re.sub('(( *нед\\.* *)|(н.)|( н *(?![А-я]))()) ', ' ', lessons)
+    weeks = re.findall('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+',
+                       lessons)
 
     start = 0
     if isinstance(weeks, list) and len(weeks) > 1:
         lessons = lessons.strip(' ')
-        lessons = re.split('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons)
+        lessons = re.split('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+',
+                           lessons)
         whitespace_remover(lessons)
         if isinstance(lessons, list) and len(lessons) < 2:
             lessons = ''.join(lessons)
@@ -182,6 +192,12 @@ def split_lessons_and_weeks(lessons, weeks, type):
         whitespace_remover(lessons)
 
         for num, weeks_x in enumerate(weeks, start):
+            if 'кр ' in weeks_x or 'кр. ' in weeks_x:
+                type.append('кр')
+                weeks_x = re.sub('(кр\\.* *)', '', weeks_x)
+                weeks[num] = weeks_x
+            else:
+                type.append('н')
             weeks_x = re.split('(,|\\.)', weeks_x)
             start = 0
             for num_x, weeks_xx in enumerate(weeks_x, start):
@@ -193,12 +209,13 @@ def split_lessons_and_weeks(lessons, weeks, type):
                     ws_counter += 1
             for _ in range(ws_counter):
                 weeks_x.remove('')
-            if 'кр ' in lessons[num]:
-                type.append('кр')
-                lessons[num] = re.sub('(кр *)', '', lessons[num])
-            else:
-                type.append('н')
+            lessons[num] = lessons[num].strip(' ')
     else:
+        if 'кр' in weeks or 'кр. ' in weeks:
+            type = 'кр'
+            weeks = re.sub('(кр\\.* *)', '', weeks)
+        else:
+            type = 'н'
         weeks = re.split('(,|\\.)', weeks[0])
         for num, weeks_x in enumerate(weeks, start):
             weeks_x = re.sub('[,;\n ]', '', weeks_x)
@@ -210,20 +227,17 @@ def split_lessons_and_weeks(lessons, weeks, type):
                 ws_counter += 1
         for _ in range(ws_counter):
             weeks_x.remove('')
-        if 'кр' in lessons:
-            type = 'кр'
-            lessons = re.sub('(кр *)', '', lessons)
-        else:
-            type = 'н'
 
     if isinstance(lessons, list) and len(lessons) > 1:
         if None in lessons:
             lessons = list(filter(None, lessons))
         start = 0
         for num, x in enumerate(lessons, start):
-            lessons[num] = re.sub('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', x)
+            lessons[num] = re.sub('(?!1 гр|2 гр|1 п\\/г|2 п\\/г)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]',
+                                  '', x)
     else:
-        lessons = re.sub('(?!1 гр|2 гр)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]', '', lessons)
+        lessons = re.sub('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+'
+                         '|[,;\n]', '', lessons)
         lessons = lessons.strip(' ')
 
     whitespace_remover(weeks)
@@ -258,12 +272,16 @@ def dump_to_json(combined, group):
     text_file.close()
 
 
-def parse_timetable():
-    # ex_data = download_timetable(1)
-    ex_data = pd.read_excel('КБиСП 3 курс 1 сем.xlsx', sheet_name='Лист1', header=None)
+def parse_timetable(faculty_class):
+    ex_data = pd.read_excel(faculty_class, sheet_name='Лист1', header=None)
 
-    for i in range(359):  # 359
+    for i in range(10, 359):  # 359
         print("i", i)
+        try:
+            ex_data[i][1]
+        except:
+            continue
+
         group = str(ex_data[i][1])
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
             print('\n', group, '\n')
@@ -293,7 +311,7 @@ def parse_timetable():
             timetables.append(Timetable(even_week))
             timetables.append(Timetable(uneven_week))
             # </editor-fold>
-            for j in range(3, 75):
+            for j in range(19, 75):
                 # <editor-fold desc="Parsing information in excel">
                 lessons = str(ex_data[i][j])
                 print(lessons, j)
@@ -306,7 +324,8 @@ def parse_timetable():
                 location_index = 0
                 # </editor-fold>
 
-                if len(list(re.findall('(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+', lessons))) > 0:
+                if len(list(re.findall('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* '
+                                       '*)*[0-9]{1,2} *)+', lessons))) > 0:
                     lessons, weeks, type = split_lessons_and_weeks(lessons, weeks, type)
                     room, location_index = format_room_and_get_location(room, location_index)
                     teachers = split_teachers(teachers)
@@ -355,4 +374,5 @@ def parse_timetable():
             dump_to_json(combined, group)
 
 
-parse_timetable()
+parse_timetable('ФТИ_Стромынка 1 курс 1 сем.xlsx')
+# download_timetable()
