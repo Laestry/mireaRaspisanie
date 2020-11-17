@@ -280,6 +280,7 @@ def dump_to_json(combined, group):
 
 def parse_timetable(faculty_class):
     ex_data = pd.read_excel(faculty_class, sheet_name='Лист1', header=None)
+    lessons_number_counter = 1
 
     for i in range(359):  # 359
         print("i", i)
@@ -292,7 +293,6 @@ def parse_timetable(faculty_class):
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
             print('\n', group, '\n')
             count = 1
-            lessons_number_counter = 1
             # <editor-fold desc="Resetting lists">
             subjects = []
             timetables = []
@@ -376,9 +376,8 @@ def parse_timetable(faculty_class):
                     add_to_timetable(lessons_number_counter, count,  subjects, timetables, lessons,
                                      Constraint(type, weeks), room, location_index)
 
-                if count % 2:
+                if not count % 2:
                     lessons_number_counter += 1
-
                 if lessons_number_counter == 7:
                     lessons_number_counter = 1
                 count += 1
