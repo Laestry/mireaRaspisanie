@@ -2,11 +2,9 @@ import json
 import requests
 import regex as re
 import pandas as pd
-
-# <editor-fold desc="Data classes">
 from bs4 import BeautifulSoup
 
-
+# <editor-fold desc="Data classes">
 class Subject:
     def __init__(self, name, teacher, type):
         self.name = name
@@ -38,14 +36,22 @@ class Day:
 
 
 class Lesson:
-    def __init__(self, subjectIndex, constraint, room, locationIndex):
+    def __init__(self, lessonNumber, subjectIndex, constraint, room, locationIndex):
+        self.lessonNumber = lessonNumber
         self.subjectIndex = subjectIndex
         self.constraint = constraint
-        self.room = room
-        self.locationIndex = locationIndex
+        if isinstance(room, list) and len(room) > 1:
+            self.room = ' '.join(room)
+        else:
+            self.room = ''.join(room)
+        if isinstance(locationIndex, list):
+            self.locationIndex = locationIndex[0]
+        else:
+            self.locationIndex = locationIndex
 
     def repr_json(self):
-        return dict(subjectIndex=self.subjectIndex,
+        return dict(lessonNumber=self.lessonNumber,
+                    subjectIndex=self.subjectIndex,
                     constraint=self.constraint.repr_json(),
                     room=self.room,
                     locationIndex=self.locationIndex)
@@ -159,7 +165,7 @@ def format_room_and_get_location(room, location_index):
     return room, location_index
 
 
-def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room, location_index):
+def add_to_timetable(lessons_num, count, subjects, timetables, lesson_name, constraint, room, location_index):
     i = -1
     start = 0
     for num, x in enumerate(subjects, start):
@@ -167,21 +173,23 @@ def add_to_timetable(count, subjects, timetables, lesson_name, constraint, room,
             i = num
 
     if count % 2:
-        timetables[0].days[((count - 1) // 2) // 6].lessons.append(Lesson(i, constraint, room, location_index))
+        timetables[0].days[((count - 1) // 2) // 6].lessons.append(Lesson(lessons_num, i, constraint, room, location_index))
     else:
-        timetables[1].days[((count - 1) // 2) // 6].lessons.append(Lesson(i, constraint, room, location_index))
+        timetables[1].days[((count - 1) // 2) // 6].lessons.append(Lesson(lessons_num, i, constraint, room, location_index))
+
+
+regex_string = '(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.-] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+'
+# кр[\.\s]+[\d,]+
 
 
 def split_lessons_and_weeks(lessons, weeks, type):
-    lessons = re.sub('(( *нед\\.* *)|(н.)|( н *(?![А-я]))()) ', ' ', lessons)
-    weeks = re.findall('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+',
-                       lessons)
+    lessons = re.sub('( *нед[\\. ]*)|( н[\\. ]*)', ' ', lessons)
+    weeks = re.findall(regex_string, lessons)
 
     start = 0
     if isinstance(weeks, list) and len(weeks) > 1:
         lessons = lessons.strip(' ')
-        lessons = re.split('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+',
-                           lessons)
+        lessons = re.split(regex_string, lessons)
         whitespace_remover(lessons)
         if isinstance(lessons, list) and len(lessons) < 2:
             lessons = ''.join(lessons)
@@ -233,11 +241,9 @@ def split_lessons_and_weeks(lessons, weeks, type):
             lessons = list(filter(None, lessons))
         start = 0
         for num, x in enumerate(lessons, start):
-            lessons[num] = re.sub('(?!1 гр|2 гр|1 п\\/г|2 п\\/г)(?:[0-9]{1,2}(?:,|.) *)*(?:[0-9]{1,2} *)+|[,;\n]',
-                                  '', x)
+            lessons[num] = re.sub(regex_string + '|[,;\n]', '', x)
     else:
-        lessons = re.sub('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* *)*[0-9]{1,2} *)+'
-                         '|[,;\n]', '', lessons)
+        lessons = re.sub(regex_string + '|[,;\n]', '', lessons)
         lessons = lessons.strip(' ')
 
     whitespace_remover(weeks)
@@ -275,7 +281,7 @@ def dump_to_json(combined, group):
 def parse_timetable(faculty_class):
     ex_data = pd.read_excel(faculty_class, sheet_name='Лист1', header=None)
 
-    for i in range(10, 359):  # 359
+    for i in range(359):  # 359
         print("i", i)
         try:
             ex_data[i][1]
@@ -286,6 +292,7 @@ def parse_timetable(faculty_class):
         if re.search('[А-Я]{4}-[0-9]{2}-[0-9]{2}', group):
             print('\n', group, '\n')
             count = 1
+            lessons_number_counter = 1
             # <editor-fold desc="Resetting lists">
             subjects = []
             timetables = []
@@ -310,8 +317,8 @@ def parse_timetable(faculty_class):
 
             timetables.append(Timetable(even_week))
             timetables.append(Timetable(uneven_week))
-            # </editor-fold>
-            for j in range(19, 75):
+            # </editor-fold>\
+            for j in range(3, 75):
                 # <editor-fold desc="Parsing information in excel">
                 lessons = str(ex_data[i][j])
                 print(lessons, j)
@@ -324,8 +331,8 @@ def parse_timetable(faculty_class):
                 location_index = 0
                 # </editor-fold>
 
-                if len(list(re.findall('(?![12] гр|[12] п/г)(?:(?:(?:кр\\.* *)*[0-9]{1,2})[,.] *)*(?:(?:кр\\.* '
-                                       '*)*[0-9]{1,2} *)+', lessons))) > 0:
+                if len(list(re.findall(regex_string, lessons))) > 0:
+                    lessons_error = lessons
                     lessons, weeks, type = split_lessons_and_weeks(lessons, weeks, type)
                     room, location_index = format_room_and_get_location(room, location_index)
                     teachers = split_teachers(teachers)
@@ -334,7 +341,7 @@ def parse_timetable(faculty_class):
                     if not isinstance(lessons, list):
                         if not check_if_subject_exist(lessons, lesson_type, subjects):
                             subjects.append(Subject(lessons, teachers, lesson_type))
-                        add_to_timetable(count, subjects, timetables, lessons,
+                        add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons,
                                          Constraint(type, weeks), room, location_index)
                     else:
                         for x in range(len(lessons)):
@@ -350,29 +357,35 @@ def parse_timetable(faculty_class):
 
                             if isinstance(room, list) and len(room) > 1 and isinstance(location_index, list) \
                                     and len(location_index) > 1:
-                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons[x],
                                                  Constraint(type[x], weeks[x]), room[x], location_index[x])
                             elif isinstance(room, list) and len(room) > 1:
-                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons[x],
                                                  Constraint(type[x], weeks[x]), room[x], location_index)
                             elif len(room) == 1:
-                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons[x],
                                                  Constraint(type[x], weeks[x]), room[0], location_index)
                             else:
-                                add_to_timetable(count, subjects, timetables, lessons[x],
+                                add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons[x],
                                                  Constraint(type[x], weeks[x]), room, location_index)
 
                 else:
                     if not check_if_subject_exist(lessons, lesson_type, subjects):
                         subjects.append(Subject(lessons, teachers, lesson_type))
                     room, location_index = format_room_and_get_location(room, location_index)
-                    add_to_timetable(count,  subjects, timetables, lessons,
+                    add_to_timetable(lessons_number_counter, count,  subjects, timetables, lessons,
                                      Constraint(type, weeks), room, location_index)
+
+                if count % 2:
+                    lessons_number_counter += 1
+
+                if lessons_number_counter == 7:
+                    lessons_number_counter = 1
                 count += 1
 
             combined = Combine(subjects, timetables)
             dump_to_json(combined, group)
 
 
-parse_timetable('ФТИ_Стромынка 1 курс 1 сем.xlsx')
+parse_timetable('КБиСП 3 курс 1 сем.xlsx')
 # download_timetable()
