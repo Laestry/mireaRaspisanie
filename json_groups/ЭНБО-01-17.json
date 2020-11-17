@@ -26,7 +26,7 @@
             "type": "лаб"
         },
         {
-            "name": "Процессы получения наночастиц и наноматериалов нанотехнологии",
+            "name": "Процессы получения аночастиц и аноматериалов анотехнологии",
             "teacher": "Капустин В.И.",
             "type": "пр"
         },
@@ -71,13 +71,18 @@
             "type": "лк"
         },
         {
-            "name": "Моделирование и проектирование микро- и наносистем",
+            "name": "Моделирование и проектирование микро- и аносистем",
             "teacher": "Певцов Е.Ф.",
             "type": "лк"
         },
         {
             "name": "Физика конденсированного состояния",
             "teacher": "Юрасов А.Н.",
+            "type": "лк"
+        },
+        {
+            "name": "-",
+            "teacher": "Рассадина Т.В.",
             "type": "лк"
         },
         {
@@ -97,6 +102,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 0,
                             "constraint": {
                                 "type": [],
@@ -106,6 +112,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 0,
                             "constraint": {
                                 "type": [],
@@ -115,6 +122,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -124,6 +132,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -133,6 +142,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -142,6 +152,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -155,6 +166,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 4,
                             "constraint": {
                                 "type": [],
@@ -164,6 +176,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 4,
                             "constraint": {
                                 "type": [],
@@ -173,6 +186,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 6,
                             "constraint": {
                                 "type": "н",
@@ -184,6 +198,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 6,
                             "constraint": {
                                 "type": "н",
@@ -195,6 +210,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 8,
                             "constraint": {
                                 "type": "н",
@@ -206,6 +222,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 9,
                             "constraint": {
                                 "type": "н",
@@ -217,6 +234,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": "кр",
@@ -229,6 +247,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 8,
                             "constraint": {
                                 "type": "н",
@@ -240,6 +259,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 9,
                             "constraint": {
                                 "type": "н",
@@ -251,6 +271,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": "кр",
@@ -267,6 +288,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -276,6 +298,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -285,6 +308,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -294,6 +318,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -303,6 +328,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -312,6 +338,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -321,20 +348,15 @@
                                     "5"
                                 ]
                             },
-                            "room": [
-                                "С-20*",
-                                "408"
-                            ],
-                            "locationIndex": [
-                                0,
-                                0
-                            ]
+                            "room": "С-20* 408",
+                            "locationIndex": 0
                         }
                     ]
                 },
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -344,6 +366,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -353,6 +376,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 11,
                             "constraint": {
                                 "type": [],
@@ -362,6 +386,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -371,6 +396,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 12,
                             "constraint": {
                                 "type": "н",
@@ -385,6 +411,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 13,
                             "constraint": {
                                 "type": "н",
@@ -397,6 +424,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -408,6 +436,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 15,
                             "constraint": {
                                 "type": [],
@@ -421,24 +450,7 @@
                 {
                     "lessons": [
                         {
-                            "subjectIndex": 16,
-                            "constraint": {
-                                "type": [],
-                                "weeks": []
-                            },
-                            "room": "Д",
-                            "locationIndex": -1
-                        },
-                        {
-                            "subjectIndex": 16,
-                            "constraint": {
-                                "type": [],
-                                "weeks": []
-                            },
-                            "room": "Д",
-                            "locationIndex": -1
-                        },
-                        {
+                            "lessonNumber": 1,
                             "subjectIndex": 17,
                             "constraint": {
                                 "type": [],
@@ -448,6 +460,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 17,
                             "constraint": {
                                 "type": [],
@@ -457,6 +470,27 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
+                            "subjectIndex": 18,
+                            "constraint": {
+                                "type": [],
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": -1
+                        },
+                        {
+                            "lessonNumber": 4,
+                            "subjectIndex": 18,
+                            "constraint": {
+                                "type": [],
+                                "weeks": []
+                            },
+                            "room": "Д",
+                            "locationIndex": -1
+                        },
+                        {
+                            "lessonNumber": 5,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -466,6 +500,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -479,6 +514,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -488,6 +524,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -497,6 +534,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -506,6 +544,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -515,6 +554,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -524,6 +564,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -541,6 +582,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 1,
                             "constraint": {
                                 "type": [],
@@ -550,6 +592,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 1,
                             "constraint": {
                                 "type": [],
@@ -559,6 +602,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 3,
                             "constraint": {
                                 "type": "н",
@@ -573,6 +617,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 3,
                             "constraint": {
                                 "type": "н",
@@ -587,6 +632,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -596,6 +642,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -609,6 +656,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 5,
                             "constraint": {
                                 "type": "н",
@@ -623,6 +671,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 5,
                             "constraint": {
                                 "type": "н",
@@ -637,6 +686,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -646,6 +696,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -655,6 +706,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -664,6 +716,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -677,6 +730,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -686,6 +740,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -695,6 +750,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -704,6 +760,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -713,6 +770,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 8,
                             "constraint": {
                                 "type": "н",
@@ -725,6 +783,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -736,6 +795,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -747,6 +807,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -759,6 +820,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -770,6 +832,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -785,6 +848,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -794,6 +858,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -803,6 +868,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 11,
                             "constraint": {
                                 "type": [],
@@ -812,6 +878,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -821,6 +888,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 14,
                             "constraint": {
                                 "type": "н",
@@ -835,6 +903,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -848,11 +917,24 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
+                            "subjectIndex": 16,
+                            "constraint": {
+                                "type": "н",
+                                "weeks": [
+                                    "8"
+                                ]
+                            },
+                            "room": "Д",
+                            "locationIndex": -1
+                        },
+                        {
+                            "lessonNumber": 6,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
                                 "weeks": [
-                                    "8-16"
+                                    "16"
                                 ]
                             },
                             "room": "Д",
@@ -863,6 +945,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -872,6 +955,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -881,6 +965,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -890,6 +975,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -899,6 +985,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 7,
                             "constraint": {
                                 "type": [],
@@ -908,6 +995,7 @@
                             "locationIndex": -1
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -921,6 +1009,7 @@
                 {
                     "lessons": [
                         {
+                            "lessonNumber": 1,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -928,16 +1017,11 @@
                                     "6"
                                 ]
                             },
-                            "room": [
-                                "С-20*",
-                                "408"
-                            ],
-                            "locationIndex": [
-                                0,
-                                0
-                            ]
+                            "room": "С-20* 408",
+                            "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 2,
                             "subjectIndex": 10,
                             "constraint": {
                                 "type": "н",
@@ -945,16 +1029,11 @@
                                     "6"
                                 ]
                             },
-                            "room": [
-                                "С-20*",
-                                "408"
-                            ],
-                            "locationIndex": [
-                                0,
-                                0
-                            ]
+                            "room": "С-20* 408",
+                            "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 3,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -964,6 +1043,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 4,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -973,6 +1053,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 5,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
@@ -982,6 +1063,7 @@
                             "locationIndex": 0
                         },
                         {
+                            "lessonNumber": 6,
                             "subjectIndex": 2,
                             "constraint": {
                                 "type": [],
