@@ -83,7 +83,11 @@ class Combine:
 # </editor-fold>
 
 
+error_counter = 0
+
+
 def download_timetable():
+    global error_counter
     req = requests.get('https://www.mirea.ru/schedule/')
     soup = BeautifulSoup(req.text, 'lxml')
     url = []
@@ -97,6 +101,8 @@ def download_timetable():
         open(url_x.rsplit('/', 1)[1], 'wb').write(r.content)
         print(url_x.rsplit('/', 1)[1])
         parse_timetable(url_x.rsplit('/', 1)[1])
+
+    print(error_counter)
 
 
 def check_if_subject_exist(name, subject_type, subjects):
@@ -286,6 +292,7 @@ def dump_to_json(combined, group):
 def parse_timetable(faculty_class):
     ex_data = pd.read_excel(faculty_class, header=None)
     lessons_number_counter = 1
+    global error_counter
 
     for i in range(359):  # 359
         print("i", i)
@@ -396,6 +403,7 @@ def parse_timetable(faculty_class):
                         subjects.append(Subject(lessons_error, teachers_error, lesson_type_error))
                         add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons_error,
                                          Constraint([], []), room_error, -2)
+                    error_counter += 1
 
                 if not count % 2:
                     lessons_number_counter += 1
