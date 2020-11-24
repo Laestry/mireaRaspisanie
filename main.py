@@ -396,9 +396,9 @@ def parse_timetable(faculty_class):
                         add_to_timetable(lessons_number_counter, count,  subjects, timetables, lessons,
                                          Constraint(type, weeks), room, location_index)
                 except:
-                    print(colored('\n\n .............E R R O R............. \n\n', 'red'))
+                    print(colored('\n\n .............B E G I N  E R R O R............. \n\n', 'red'))
                     print(lessons_error, '\\n', teachers_error, '\\n', lesson_type_error, '\\n', room_error)
-                    print(colored('\n\n .............E R R O R............. \n\n', 'red'))
+                    print(colored('\n\n .............E N D  E R R O R............. \n\n', 'red'))
                     if not check_if_subject_exist(lessons_error, lesson_type_error, subjects):
                         subjects.append(Subject(lessons_error, teachers_error, lesson_type_error))
                         add_to_timetable(lessons_number_counter, count, subjects, timetables, lessons_error,
